@@ -1,0 +1,6 @@
+RewriteEngine on
+RewriteBase /spp
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /spp/index.php [L]
+
