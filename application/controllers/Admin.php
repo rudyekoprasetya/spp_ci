@@ -39,7 +39,7 @@ class Admin extends CI_Controller {
 		$crud->set_table('tb_kelas');
 		$crud->set_subject('Kelas');
 		//field yang harsu diisi
-		$crud->required_fields('kode_kelas','nama_kelas','is_aktif');
+		$crud->required_fields('kode_kelas','nama_kelas');
 		$data['judul']='Manajemen Data Kelas';
 		$data['output']=$crud->render();
 		$this->_crud_output($data);
@@ -71,6 +71,22 @@ class Admin extends CI_Controller {
 		$crud->unset_edit();
 		$crud->unset_delete();
 		$data['judul']="Rekapitulasi Pembayaran Siswa";
+		$data['output']=$crud->render();
+		$this->_crud_output($data);
+	}
+
+	public function transaksi() {
+		$crud=new grocery_CRUD();
+		$crud->set_table('tb_transaksi');
+		$crud->where('ket LIKE', 'ovo');
+		$crud->set_subject('Kelola Transaksi');
+		$crud->set_relation('nis','tb_siswa','nama_lengkap');
+		$crud->columns('nis','spp','bulan','ket');
+		$crud->display_as('nis','Nama Siswa');
+		//disable tombol
+		$crud->unset_add();
+		$crud->unset_delete();
+		$data['judul']="Pembayaran Online";
 		$data['output']=$crud->render();
 		$this->_crud_output($data);
 	}
@@ -123,6 +139,23 @@ class Admin extends CI_Controller {
 		//disable tombol
 		$crud->unset_edit();	
 		$data['judul']="Data Outbox";
+		$data['output']=$crud->render();
+		$this->_crud_output($data);
+	}
+
+	public function ortu() {
+		$crud = new grocery_CRUD();
+		//pilih tabel
+		$crud->set_table('tb_ortu');
+		$crud->set_subject('Orang Tua');
+		//relasi
+		$crud->set_relation('nis','tb_siswa','nama_lengkap');
+		$crud->set_relation('id_user','tb_user','username');
+		//field yang harsu diisi
+		$crud->required_fields('id_user','nis','nama');
+		$crud->display_as('nis','Nama Siswa');	
+		$crud->display_as('id_user','Username');	
+		$data['judul']='Manajemen Akun Orang Tua';
 		$data['output']=$crud->render();
 		$this->_crud_output($data);
 	}

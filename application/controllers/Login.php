@@ -17,15 +17,19 @@ class Login extends CI_controller {
 		
 		$cek=$this->Model_ci->cek($username,md5($password));
 			if($cek==TRUE) {
-			$data_admin=$this->Model_ci->get_where('tb_user',array('username'=>$username))->row();
-			$akses=$data_admin->akses;
-			// var_dump($akses);
-			$data=array('username'=>$username,'akses'=>$akses,'logged_in'=>TRUE );
-			$this->session->set_userdata($data);
-			redirect('dashboard');
+				$data_admin=$this->Model_ci->get_where('tb_user',array('username'=>$username))->row();
+				$akses=$data_admin->akses;
+				// var_dump($akses);
+				$data=array('username'=>$username,'akses'=>$akses,'logged_in'=>TRUE );
+				$this->session->set_userdata($data);
+				if($akses=='ortu') {
+					redirect('ortu');
+				} else {
+					redirect('dashboard');
+				}			
 			} else {			
-			$this->session->set_flashdata('alert','User dan Password tidak sesuai!');
-			redirect('login','refresh');	
+				$this->session->set_flashdata('alert','User dan Password tidak sesuai!');
+				redirect('login','refresh');	
 			}	
 		
 	}

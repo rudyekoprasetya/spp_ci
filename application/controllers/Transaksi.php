@@ -18,7 +18,7 @@ class Transaksi extends CI_Controller {
 	public function cari_siswa() {
 		$data['judul']="Pembayaran SPP";
 		$key=$this->input->post('key',true);
-		$hasil=$this->Model_ci->view_siswa()->row();
+		$hasil=$this->Model_ci->view_siswa($key)->row();
 		if(!empty($hasil)) {
 		//ambil data 
 			$data['nis']=$hasil->nis;

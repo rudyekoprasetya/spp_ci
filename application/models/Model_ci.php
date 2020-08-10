@@ -19,10 +19,15 @@ class Model_ci extends CI_Model {
 		 	}
 	}
 
-	//fungsi join kelas
+	//join data ortu
+	public function view_ortu($username) {
+		$query="SELECT c.id_ortu, a.nis, a.nama_lengkap, a.tempat_lahir, a.tgl_lahir, a.jenis_kelamin, a.foto, a.alamat,  a.nama_ayah, a.nama_ibu, a.hp, b.nama_kelas, d.username FROM tb_kelas b JOIN tb_siswa a ON a.kode_kelas=b.kode_kelas JOIN tb_ortu c ON c.nis=a.nis JOIN tb_user d ON d.id_user=c.id_user WHERE d.username='$username'";
+		return $this->db->query($query);
+	}
 
-	public function view_siswa() {
-		$query="SELECT a.nis, a.nama_lengkap, b.nama_kelas FROM tb_siswa a JOIN tb_kelas b ON a.kode_kelas=b.kode_kelas";
+	//fungsi join kelas
+	public function view_siswa($key) {
+		$query="SELECT a.nis, a.nama_lengkap, b.nama_kelas FROM tb_siswa a JOIN tb_kelas b ON a.kode_kelas=b.kode_kelas WHERE a.nis='$key'";
 		return $this->db->query($query);
 	}
 

@@ -134,7 +134,7 @@
 	}
 
 	function getSPP() {
-		$('#spp').val('200000');
+		$('#spp').val('110000');
 		getTotal();
 	}
 
