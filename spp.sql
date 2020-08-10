@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Jul 29, 2020 at 10:30 AM
+-- Generation Time: Aug 11, 2020 at 12:59 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -42,13 +42,6 @@ CREATE TABLE `daemons` (
 CREATE TABLE `gammu` (
   `Version` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `gammu`
---
-
-INSERT INTO `gammu` (`Version`) VALUES
-(13);
 
 -- --------------------------------------------------------
 
@@ -109,13 +102,6 @@ CREATE TABLE `outbox` (
   `DeliveryReport` enum('default','yes','no') DEFAULT 'default',
   `CreatorID` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- Dumping data for table `outbox`
---
-
-INSERT INTO `outbox` (`UpdatedInDB`, `InsertIntoDB`, `SendingDateTime`, `SendBefore`, `SendAfter`, `Text`, `DestinationNumber`, `Coding`, `UDH`, `Class`, `TextDecoded`, `ID`, `MultiPart`, `RelativeValidity`, `SenderID`, `SendingTimeOut`, `DeliveryReport`, `CreatorID`) VALUES
-('2020-07-27 08:42:32', '2020-07-27 08:42:32', '2020-07-27 08:42:32', '23:59:59', '00:00:00', NULL, '085235830024', 'Default_No_Compression', NULL, -1, 'Diterima Pembayaran SPP dan lainnya Dari Antondari X-TKJ-1 Sebesar Rp. 599,000 Terima Kasih  ~SMK Taman Siswa Kediri~ ', 1, 'false', -1, NULL, '2020-07-27 08:42:32', 'default', '');
 
 --
 -- Triggers `outbox`
@@ -267,13 +253,18 @@ CREATE TABLE `tb_kelas` (
   `is_aktif` enum('yes','no') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `tb_kelas`
+-- Table structure for table `tb_ortu`
 --
 
-INSERT INTO `tb_kelas` (`kode_kelas`, `nama_kelas`, `jurusan`, `is_aktif`) VALUES
-('X-1', 'X-TKJ-1', 'Teknik Komputer dan Jaringan', 'yes'),
-('X-2', 'X-TSM-1', 'Teknik Sepeda Motor', 'yes');
+CREATE TABLE `tb_ortu` (
+  `id_ortu` tinyint(3) NOT NULL,
+  `id_user` tinyint(3) DEFAULT NULL,
+  `nis` varchar(10) DEFAULT NULL,
+  `is_aktif` enum('yes','no') DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -294,13 +285,6 @@ CREATE TABLE `tb_siswa` (
   `hp` varchar(16) DEFAULT NULL,
   `kode_kelas` varchar(8) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_siswa`
---
-
-INSERT INTO `tb_siswa` (`nis`, `nama_lengkap`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `alamat`, `foto`, `nama_ibu`, `nama_ayah`, `hp`, `kode_kelas`) VALUES
-('0001/TSM', 'Anton', 'Kediri', '2020-07-21', 'L', '<p>\r\n	Kediri raya</p>\r\n', '283fa-vm6.jpg', 'Ijah', 'Bondan', '085235830024', 'X-1');
 
 -- --------------------------------------------------------
 
@@ -323,19 +307,6 @@ CREATE TABLE `tb_transaksi` (
   `waktu_bayar` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tb_transaksi`
---
-
-INSERT INTO `tb_transaksi` (`id_transaksi`, `nis`, `spp`, `bulan`, `kesiswaan`, `daftar_ulang`, `lain_lain`, `psg`, `uts_uas`, `unas`, `ket`, `waktu_bayar`) VALUES
-('SPP-20200726094752', '0001/TSM', 200000, '10', 9000, 9000, 9000, 8000, 7888, 9000, 'cek-', '2020-07-26 02:47:52'),
-('SPP-20200726102407', '0001/TSM', 200000, '09', 9000, 78000, 9000, 80000, 120000, 25000, 'Bayar Lunas', '2020-07-26 03:24:07'),
-('SPP-20200726103052', '0001/TSM', 200000, '10', 0, 0, 0, 0, 0, 0, 'Test-', '2020-07-26 03:30:52'),
-('SPP-20200726103445', '0001/TSM', 200000, '09', 0, 0, 0, 0, 0, 0, 'Coba', '2020-07-26 03:34:45'),
-('SPP-20200726104658', '0001/TSM', 200000, '11', 0, 0, 0, 0, 0, 0, 'LUNAS', '2020-07-26 03:46:58'),
-('SPP-20200726104936', '0001/TSM', 200000, '11', 90000, 9000, 9000, 9000, 9000, 9000, 'LUNAS semua', '2020-07-26 03:49:36'),
-('SPP-20200727034232', '0001/TSM', 200000, '01', 24000, 120000, 90000, 50000, 40000, 75000, 'LUNAS', '2020-07-26 20:42:32');
-
 -- --------------------------------------------------------
 
 --
@@ -346,18 +317,9 @@ CREATE TABLE `tb_user` (
   `id_user` tinyint(3) NOT NULL,
   `username` varchar(30) DEFAULT NULL,
   `password` varchar(100) DEFAULT NULL,
-  `akses` enum('admin','user') DEFAULT NULL,
+  `akses` enum('admin','user','kepsek','ortu') DEFAULT NULL,
   `is_aktif` enum('yes','no') DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `tb_user`
---
-
-INSERT INTO `tb_user` (`id_user`, `username`, `password`, `akses`, `is_aktif`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'admin', 'yes'),
-(2, 'user', 'ee11cbb19052e40b07aac0ca060c23ee', 'user', 'yes'),
-(3, 'rudy', 'e10adc3949ba59abbe56e057f20f883e', 'user', 'yes');
 
 --
 -- Indexes for dumped tables
@@ -418,6 +380,14 @@ ALTER TABLE `tb_kelas`
   ADD PRIMARY KEY (`kode_kelas`);
 
 --
+-- Indexes for table `tb_ortu`
+--
+ALTER TABLE `tb_ortu`
+  ADD PRIMARY KEY (`id_ortu`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `nis` (`nis`);
+
+--
 -- Indexes for table `tb_siswa`
 --
 ALTER TABLE `tb_siswa`
@@ -451,7 +421,7 @@ ALTER TABLE `inbox`
 -- AUTO_INCREMENT for table `outbox`
 --
 ALTER TABLE `outbox`
-  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pbk`
@@ -466,10 +436,16 @@ ALTER TABLE `pbk_groups`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `tb_ortu`
+--
+ALTER TABLE `tb_ortu`
+  MODIFY `id_ortu` tinyint(3) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tb_user`
 --
 ALTER TABLE `tb_user`
-  MODIFY `id_user` tinyint(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` tinyint(3) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
