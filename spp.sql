@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: Aug 11, 2020 at 12:59 AM
+-- Generation Time: Aug 11, 2020 at 10:38 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.1
 
@@ -304,6 +304,7 @@ CREATE TABLE `tb_transaksi` (
   `uts_uas` int(10) DEFAULT NULL,
   `unas` int(10) DEFAULT NULL,
   `ket` text DEFAULT NULL,
+  `status_bayar` enum('sudah','belum') DEFAULT NULL,
   `waktu_bayar` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
