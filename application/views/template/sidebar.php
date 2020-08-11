@@ -44,7 +44,8 @@ $akses=$this->session->userdata('akses');
     </li>
 <?php } else if($akses=='ortu') {?>
           <li><a href="<?php echo site_url('ortu') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-          <li><a href="<?php echo site_url('ortu/transaksi') ?>"><i class="fa fa-money"></i> Transaksi</a></li>
+          <li><a href="<?php echo site_url('ortu/transaksi') ?>"><i class="fa fa-money"></i> Pembayaran</a></li>
+          <li><a href="<?php echo site_url('ortu/cara') ?>"><i class="fa fa-info-circle"></i> Cara Bayar</a></li>
 <?php  } else { ?>
           <li><a href="<?php echo site_url('dashboard') ?>"><i class="fa fa-dashboard"></i> Dashboard</a></li>
     <li class="dropdown">
