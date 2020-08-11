@@ -9,6 +9,8 @@ $akses=$this->session->userdata('akses');
         <ul class="dropdown-menu">
           <li><a href="<?php echo site_url('transaksi') ?>"><i class="fa fa-money"></i> Langsung</a></li>
           <li><a href="<?php echo site_url('admin/transaksi') ?>"><i class="fa fa-money"></i> Online/OVO</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#myModalInfo" ><i class="fa fa-briefcase"></i> Akun OVO</a></li>
+          <li><a href="<?php echo site_url('ortu/cara') ?>"><i class="fa fa-info-circle"></i> Cara Bayar</a></li>
         </ul>
     </li>
     <li class="dropdown">
@@ -53,6 +55,8 @@ $akses=$this->session->userdata('akses');
         <ul class="dropdown-menu">
           <li><a href="<?php echo site_url('transaksi') ?>"><i class="fa fa-money"></i> Langsung</a></li>
           <li><a href="<?php echo site_url('admin/transaksi') ?>"><i class="fa fa-money"></i> Online/OVO</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#myModalInfo" ><i class="fa fa-briefcase"></i> Akun OVO</a></li>
+          <li><a href="<?php echo site_url('ortu/cara') ?>"><i class="fa fa-info-circle"></i> Cara Bayar</a></li>
         </ul>
     </li>
           <li><a href="<?php echo site_url('admin/inbox') ?>"><i class="fa fa-envelope"></i> Inbox SMS</a></li>

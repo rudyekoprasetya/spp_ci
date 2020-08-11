@@ -44,7 +44,8 @@ class Ortu extends CI_Controller {
 			'psg' => $this->input->post('psg',true),
 			'uts_uas' => $this->input->post('uts_uas',true),
 			'unas' => $this->input->post('unas',true),
-			'ket' => "ovo",
+			'ket' => "Bayar dengan OVO",
+			'status_bayar' => "belum",
 			'waktu_bayar' => date("Y-m-d h:i:s")
 		);
 		$totalBayar=$this->input->post('total_bayar');

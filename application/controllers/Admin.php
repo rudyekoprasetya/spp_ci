@@ -78,11 +78,12 @@ class Admin extends CI_Controller {
 	public function transaksi() {
 		$crud=new grocery_CRUD();
 		$crud->set_table('tb_transaksi');
-		$crud->where('ket LIKE', 'ovo');
+		$crud->where('status_bayar =', 'belum');
 		$crud->set_subject('Kelola Transaksi');
 		$crud->set_relation('nis','tb_siswa','nama_lengkap');
-		$crud->columns('nis','spp','bulan','ket');
+		$crud->columns('nis','spp','bulan','ket','status_bayar','waktu_bayar');
 		$crud->display_as('nis','Nama Siswa');
+		$crud->display_as('status_bayar','Konfirmasi Bayar');
 		//disable tombol
 		$crud->unset_add();
 		$crud->unset_delete();

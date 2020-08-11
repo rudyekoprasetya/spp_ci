@@ -60,6 +60,32 @@
       </div><!-- /#page-wrapper -->
 
     </div><!-- /#wrapper -->
+
+<!-- Modal Edit data -->
+<div class="modal fade" id="myModalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalInfoLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalInfoLabel">Akun OVO</h4>
+      </div>
+      <div class="modal-body">
+        <div class="jumbotron">
+          <center>
+            <img src="<?= base_url().'/assets/img/contoh-ovo.png' ?>" class="img-responsive img-thumbnail" width="320px" height="320px">
+            <h3><b>0857-3699-1133 a/n Indah Sulihati</b></h3>
+          </center>
+          <p align="center"><a class="btn btn-primary btn-lg" href="<?= site_url('ortu/cara'); ?>" role="button"><i class="fa fa-info-circle"></i> Cara Pembayaran</a></p>
+        </div>
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn btn-default' data-dismiss='modal'>Tutup</button>
+    </div>
+    </div>
+  </div>
+</div>
+<!--END Modal Edit data -->
+
 <?php if(isset($output)) {?>
     <!-- JS grocery CRUD -->
     <?php foreach ($output->js_files as $file) { ?>

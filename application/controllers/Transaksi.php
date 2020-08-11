@@ -45,6 +45,7 @@ class Transaksi extends CI_Controller {
 			'uts_uas' => $this->input->post('uts_uas',true),
 			'unas' => $this->input->post('unas',true),
 			'ket' => $this->input->post('ket',true),
+			'status_bayar' => "sudah",
 			'waktu_bayar' => date("Y-m-d h:i:s")
 		);
 
